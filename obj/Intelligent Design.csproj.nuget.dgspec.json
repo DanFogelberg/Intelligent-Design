@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj": {}
+  },
+  "projects": {
+    "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj",
+        "projectName": "Intelligent Design",
+        "projectPath": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj",
+        "packagesPath": "/Users/danfogelberg/.nuget/packages/",
+        "outputPath": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/danfogelberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200-preview.22628.1/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
