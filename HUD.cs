@@ -3,53 +3,36 @@ namespace Intelligent_Design
 {
 	public class HUD
 	{
-		public int StartHeight;
-		public int Height = 6; //Size of HUD
-		public int Width;
+		private readonly int StartHeight;
+		private readonly int Height = 6; //Size of HUD
+		private readonly int Width;
 
-		public HUD()
+		public HUD(int height, int width)
 		{
-			StartHeight = Game.Height;
-            Width = Game.Width;
+			StartHeight = height;
+            Width = width;
             for (var x = 0; x < Width; x++) for (var y = 0; y < Height; y++)
-                {
-                    Console.SetCursorPosition(x, y + StartHeight);
-                    //Since console sometimes skips writing whitespaces i set ForegroundColor = BackgroundColor and write . instea
-                    Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-
-
-            Console.Write(" ");
-
+            {
+                Console.SetCursorPosition(x, y + StartHeight);
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(" ");
             }
 
-
-    }
+        }
 
         public void Render()
         {
-
-            //for(var x = 0; x < Width ; x++) for(var y = 0; y < Height; y++)
-            //{
-            //    Console.SetCursorPosition(x, y + StartHeight);
-            //    //Since console sometimes skips writing whitespaces i set ForegroundColor = BackgroundColor and write . instea
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.DarkRed;
 
-
-            //    Console.Write(" ");
-
-            //}
-
+            //First row.
             Console.SetCursorPosition(3, StartHeight + 1);
             Console.WriteLine($"Year:      {Game.Round.ToString("d2")}");
             Console.SetCursorPosition(3, StartHeight + 2);
             Console.WriteLine($"Max Year:  {Game.MaxRounds}");
             Console.SetCursorPosition(3, StartHeight + 3);
             Console.WriteLine($"Changes:   {Game.Changes.ToString("d2")}");
-
-
-
+            //Second row.
             Console.SetCursorPosition(Width / 2, StartHeight + 1);
             Console.WriteLine($"Change Year:  Q/W");
             Console.SetCursorPosition(Width / 2, StartHeight + 2);

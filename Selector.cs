@@ -5,20 +5,25 @@ namespace Intelligent_Design
 {
 	public class Selector
 	{
-		public Game Board; //Set in program. Referenced for rendering and editing hasLife.
+        public Game Board; //Set in program. Referenced for rendering and editing hasLife and Changes. Should probably be rebuilt so Game calls Selector functions and passes only needed data.
 
-		public bool Up = false;
+        public bool Up = false;
         public bool Down = false;
         public bool Left = false;
         public bool Right = false;
 		public bool ChangeLife = false;
-		
 
-        public int X = 1;
-		public int Y = 1;
-		public Selector(Game board)
+		private readonly int MaxHeight;
+		private readonly int MaxWidth;
+		
+        private int X = 1;
+		private int Y = 1;
+
+		public Selector(int maxHeight, int maxWidth, Game game)
 		{
-			Board = board;
+			MaxHeight = maxHeight;
+			MaxWidth = maxWidth;
+			Board = game;
 
 		}
 
@@ -28,11 +33,11 @@ namespace Intelligent_Design
 		{
 			if (ChangeLife)
 			{
-				Board.squares[X, Y].HasLife = !Board.squares[X, Y].HasLife;
-				Board.squares[X, Y].WillHaveLife = Board.squares[X, Y].HasLife;
+				Board.Squares[X, Y].HasLife = !Board.Squares[X, Y].HasLife;
+				Board.Squares[X, Y].WillHaveLife = Board.Squares[X, Y].HasLife;
 
                 Game.Changes++;
-				Game.ChangesPerYear[Game.Round]++;
+				Game.ChangesPerRound[Game.Round]++;
 			}
 
 
@@ -47,11 +52,12 @@ namespace Intelligent_Design
 			Right = false;
 			ChangeLife = false;
         }
+
 		public void Render()
 		{
 			Console.SetCursorPosition(X, Y);
 			Console.BackgroundColor = ConsoleColor.Yellow;
-			if (Board.squares[X, Y].HasLife == true) Console.BackgroundColor = ConsoleColor.DarkYellow;
+			if (Board.Squares[X, Y].HasLife == true) Console.BackgroundColor = ConsoleColor.DarkYellow;
 			
 			Console.Write(" ");
 			
@@ -59,10 +65,9 @@ namespace Intelligent_Design
 
 		public void Move(int x, int y)
 		{
-			Board.squares[X, Y].render = true;
-			if (x + X >= 0 && x + X < Game.Width) X = X + x;
-
-            if (y + Y >= 0 && y + Y < Game.Height) Y = Y + y;
+			Board.Squares[X, Y].render = true;
+			if (x + X >= 0 && x + X < MaxWidth) X = X + x;
+            if (y + Y >= 0 && y + Y < MaxHeight) Y = Y + y;
 
         }
 	}

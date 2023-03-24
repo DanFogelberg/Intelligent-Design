@@ -3,8 +3,8 @@ namespace Intelligent_Design
 {
 	public class Square
 	{
-		public int X;
-		public int Y;
+		public readonly int X;
+		public readonly int Y;
 		public bool HasLife = false;
 		public bool WillHaveLife;
 		public bool render = true;

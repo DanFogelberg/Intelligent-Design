@@ -1,2 +1,15 @@
 
 .DS_Store
+.vs/Intelligent Design/xs/UserPrefs.xml
+.vs/Intelligent Design/xs/project-cache/Intelligent Design-Debug.json
+obj/Debug/net7.0/Intelligent Design.assets.cache
+obj/Debug/net7.0/Intelligent Design.csproj.FileListAbsolute.txt
+obj/Debug/net7.0/Intelligent Design.dll
+obj/Debug/net7.0/Intelligent Design.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net7.0/Intelligent Design.genruntimeconfig.cache
+obj/Debug/net7.0/Intelligent Design.pdb
+obj/Debug/net7.0/ref/Intelligent Design.dll
+obj/Debug/net7.0/refint/Intelligent Design.dll
+bin/Debug/net7.0/Intelligent Design.pdb
+bin/Debug/net7.0/Intelligent Design.dll
+*.pdb

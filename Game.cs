@@ -3,46 +3,50 @@
 namespace Intelligent_Design
 {
 	public class Game
-	{
+	{        
+        public Square[,] Squares;
+        private BoardState[] BoardStates;
+        private BoardState WinState;
+        private  BoardState StartBoard;
+
+        private int Height;
+        private int Width;
+        public  static int MaxRounds;
+
         public bool Running = true;
-
-		public Square[,] squares;
-        public static int Width;
-        public static int Height;
-        public BoardState[] BoardStates;
-        public BoardState WinState;
-
-        public static int MaxRounds;
+        
         public static int Round = 1;
-
-
         public static int Changes = 0;
-        public static int[] ChangesPerYear; //Since rounds is not 0-index
+        public static int[]? ChangesPerRound;
+
+        private HUD Hud;
+        public Selector Selector;
 
         public bool StepForward = false;
         public bool StepBackward = false;
-        public BoardState StartBoard;
-
+        
         public Game(int width, int height, int rounds)
 		{
             Width = width;
             Height = height;
+            Hud = new HUD(Height, Width);
+            Selector = new Selector(Height, Width, this);
 
             MaxRounds = rounds; 
             BoardStates = new BoardState[MaxRounds];
 
-            ChangesPerYear = new int[MaxRounds + 1];
+            ChangesPerRound = new int[MaxRounds + 1];
 
-            squares = new Square[Width, Height];
+            Squares = new Square[Width, Height];
             for (int y = 0; y < Height; y++) for (int x = 0; x < Width; x++)
             {
-                squares[x, y] = new Square(x, y);
+                Squares[x, y] = new Square(x, y);
             }
-            StartBoard = new BoardState(squares);
+            StartBoard = new BoardState(Squares);
 
 
             //Win state currently hardcoded. Should get this from JSON file for each level.
-            WinState = new BoardState(squares);
+            WinState = new BoardState(Squares);
             WinState.Squares[5, 5].HasLife = true;
             WinState.Squares[6, 5].HasLife = true;
             WinState.Squares[7, 5].HasLife = true;
@@ -65,41 +69,26 @@ namespace Intelligent_Design
             WinState.Squares[5, 11].HasLife = true;
             WinState.Squares[6, 11].HasLife = true;
             WinState.Squares[7, 11].HasLife = true;
-
-
-
-
-
         }
 
 
         public void Render()
         {
-            
-            foreach (Square square in squares)
+            foreach (Square square in Squares)
             {
                 if (square.render == false) continue;
-                Console.SetCursorPosition(square.X, square.Y);
-                //Since console sometimes skips writing whitespaces i set ForegroundColor = BackgroundColor and write . instead
-                if (square.HasLife == true)
-                {
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.DarkBlue;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
 
-                }
-                Console.Write(".");
+                Console.SetCursorPosition(square.X, square.Y);
+                if (square.HasLife == true) Console.BackgroundColor = ConsoleColor.Green;
+                else Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.Write(" ");
+
                 square.render = false;
                 
             }
+            Selector.Render();
+            Hud.Render();   
         }
-
-
 
         public int GetLiveNeighbours(int x, int y)
         {
@@ -111,7 +100,7 @@ namespace Intelligent_Design
                     if (newY == y && newX == x) continue; //Skip self
 
                     if (newY < 0 || newY >= Height || newX < 0 || newX >= Width) continue; //Out of bounds
-                    else if (squares[newX, newY].HasLife == true) neighbours += 1;
+                    else if (Squares[newX, newY].HasLife == true) neighbours += 1;
 
             }
             return neighbours;
@@ -125,29 +114,19 @@ namespace Intelligent_Design
                 StepForward = false;
                 if (Round + 1 > MaxRounds) return;
 
-
-
-
-                BoardStates[Round] = new BoardState(squares);
+                BoardStates[Round] = new BoardState(Squares);
                 Round++;
 
-
-
-
-
-
-                foreach (Square square in squares)
+                foreach (Square square in Squares)
                 {
                     int liveNeighbours = GetLiveNeighbours(square.X, square.Y);
                     square.PrepareUpdate(liveNeighbours);
-                    
-
-
 
                 }
-                foreach (Square square in squares) square.Update();
+                foreach (Square square in Squares) square.Update();
                 
             }
+
             if (StepBackward)
             {
                 StepBackward = false;
@@ -156,8 +135,8 @@ namespace Intelligent_Design
                     Reset();
                     return;
                 }
-                Game.Changes -= Game.ChangesPerYear[Round];
-                Game.ChangesPerYear[Round] = 0;
+                Changes -= ChangesPerRound[Round];
+                ChangesPerRound[Round] = 0;
 
                 Round--;
 
@@ -166,9 +145,9 @@ namespace Intelligent_Design
                
                 for (int y = 0; y < Height; y++) for (int x = 0; x < Width; x++)
                     {
-                        if (squares[x, y].HasLife != BoardStates[Round].Squares[x, y].HasLife) squares[x, y].render = true;
-                        squares[x, y].HasLife = BoardStates[Round].Squares[x, y].HasLife;
-                        squares[x, y].WillHaveLife = BoardStates[Round].Squares[x, y].WillHaveLife;
+                        if (Squares[x, y].HasLife != BoardStates[Round].Squares[x, y].HasLife) Squares[x, y].render = true;
+                        Squares[x, y].HasLife = BoardStates[Round].Squares[x, y].HasLife;
+                        Squares[x, y].WillHaveLife = BoardStates[Round].Squares[x, y].WillHaveLife;
                     }
 
 
@@ -176,23 +155,23 @@ namespace Intelligent_Design
             }
 
 
-        
+            Selector.Tic();
         }
 
         public void SaveStart()
         {
-            StartBoard = new BoardState(squares);
+            StartBoard = new BoardState(Squares);
 
         }
 
         public void Reset()
         {
-            Game.Changes = 0;
+            Changes = 0;
             for (int y = 0; y < Height; y++) for (int x = 0; x < Width; x++)
             {
-                    if (squares[x, y].HasLife != StartBoard.Squares[x, y].HasLife) squares[x, y].render = true;
-                    squares[x, y].HasLife = StartBoard.Squares[x, y].HasLife;
-                    squares[x, y].WillHaveLife = StartBoard.Squares[x, y].WillHaveLife;
+                    if (Squares[x, y].HasLife != StartBoard.Squares[x, y].HasLife) Squares[x, y].render = true;
+                    Squares[x, y].HasLife = StartBoard.Squares[x, y].HasLife;
+                    Squares[x, y].WillHaveLife = StartBoard.Squares[x, y].WillHaveLife;
             }
 
         }
@@ -202,22 +181,11 @@ namespace Intelligent_Design
             foreach (Square square in WinState.Squares)
             {
                 Console.SetCursorPosition(square.X, square.Y);
-                //Since console sometimes skips writing whitespaces i set ForegroundColor = BackgroundColor and write . instead
-                if (square.HasLife == true)
-                {
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Green;
-
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.DarkBlue;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-
-                }
-                Console.Write(".");
+                if (square.HasLife == true) Console.BackgroundColor = ConsoleColor.Green;
+                else Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.Write(" ");
             }
-            foreach (Square square in squares) square.render = true;
+            foreach (Square square in Squares) square.render = true;
             System.Threading.Thread.Sleep(1000);
 
         }
@@ -226,9 +194,9 @@ namespace Intelligent_Design
         public void CheckWinState()
         {
             for (int y = 0; y < Height; y++) for (int x = 0; x < Width; x++)
-                {
-                    if (squares[x, y].HasLife != WinState.Squares[x, y].HasLife) return;
-                }
+            {
+                if (Squares[x, y].HasLife != WinState.Squares[x, y].HasLife) return;
+            }
 
             Console.Clear();
 
@@ -241,11 +209,6 @@ namespace Intelligent_Design
             Console.WriteLine($"Press any key to quit!");
             Console.ReadKey();
             Running = false;
-           
-
-
-
-
         }
 
     }

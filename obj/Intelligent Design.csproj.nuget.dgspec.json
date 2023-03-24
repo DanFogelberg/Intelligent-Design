@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj": {}
+    "/Users/danfogelberg/Documents/GitHub/Intelligent-Design/Intelligent Design.csproj": {}
   },
   "projects": {
-    "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj": {
+    "/Users/danfogelberg/Documents/GitHub/Intelligent-Design/Intelligent Design.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj",
+        "projectUniqueName": "/Users/danfogelberg/Documents/GitHub/Intelligent-Design/Intelligent Design.csproj",
         "projectName": "Intelligent Design",
-        "projectPath": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/Intelligent Design.csproj",
+        "projectPath": "/Users/danfogelberg/Documents/GitHub/Intelligent-Design/Intelligent Design.csproj",
         "packagesPath": "/Users/danfogelberg/.nuget/packages/",
-        "outputPath": "/Users/danfogelberg/Documents/GitHub/Intelligent Design/obj/",
+        "outputPath": "/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/danfogelberg/.nuget/NuGet/NuGet.Config"

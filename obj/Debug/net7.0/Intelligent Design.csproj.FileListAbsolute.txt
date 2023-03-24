@@ -13,3 +13,18 @@
 /Users/danfogelberg/Documents/GitHub/Intelligent Design/obj/Debug/net7.0/Intelligent Design.pdb
 /Users/danfogelberg/Documents/GitHub/Intelligent Design/obj/Debug/net7.0/Intelligent Design.genruntimeconfig.cache
 /Users/danfogelberg/Documents/GitHub/Intelligent Design/obj/Debug/net7.0/ref/Intelligent Design.dll
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/bin/Debug/net7.0/Intelligent Design
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/bin/Debug/net7.0/Intelligent Design.deps.json
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/bin/Debug/net7.0/Intelligent Design.runtimeconfig.json
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/bin/Debug/net7.0/Intelligent Design.dll
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/bin/Debug/net7.0/Intelligent Design.pdb
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.csproj.AssemblyReference.cache
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.GeneratedMSBuildEditorConfig.editorconfig
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.AssemblyInfoInputs.cache
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.AssemblyInfo.cs
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.csproj.CoreCompileInputs.cache
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.dll
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/refint/Intelligent Design.dll
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.pdb
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/Intelligent Design.genruntimeconfig.cache
+/Users/danfogelberg/Documents/GitHub/Intelligent-Design/obj/Debug/net7.0/ref/Intelligent Design.dll
